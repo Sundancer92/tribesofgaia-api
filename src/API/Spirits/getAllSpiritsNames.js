@@ -1,4 +1,4 @@
-const { sql } = require("../../DB/dbConnect");
+const { sql } = require("../../../DB/dbConnect");
 
 const GetAllSpiritNames = async (req, res) => {
 	try {
