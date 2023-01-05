@@ -39,13 +39,14 @@ app.get("/spirits", async (req, res) => {
 	res.end;
 });
 
-app.post("/validate", async (req, res) => {
-	const { authUser, authPassword } = req.body;
-	const user = await GetUserLogIn(authUser, authPassword);
-
-
-	const token = tokenSign(user, res);
-	res.send(token);
+app.post("/loginAuth", async (req, res) => {
+	console.log(req.body)
+	const { authUsername, authPassword } = req.body;
+	const user = await GetUserLogIn(authUsername, authPassword);
+	console.log(user)
+	// const token = req.headers.authtoken
+	// console.log(token)
+	res.send(user);
 	res.end;
 });
 
