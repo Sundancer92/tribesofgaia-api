@@ -20,9 +20,8 @@ app.use(bodyParser.json());
 
 // API
 // Spirits
-const { GetAllSpiritNames } = require("./src/API/Spirits/getAllSpiritsNames");
+const { GetSpiritsData } = require("./src/API/Spirits/getSpiritData");
 const { GetUserLogIn } = require("./src/API/Users/getUserLogIn");
-const { tokenSign } = require("./src/helpers/userAuth");
 
 // END API
 
@@ -33,12 +32,13 @@ app.get("/", (req, res) => {
 
 // Rutas
 app.get("/spirits", async (req, res) => {
-	const allSpiritsNames = await GetAllSpiritNames();
+	const allSpiritsNames = await GetSpiritsData();
 
 	res.send(allSpiritsNames);
-	res.end;
 });
 
+
+// Login / Logout
 app.post("/loginAuth", async (req, res) => {
 	console.log(req.body)
 	const { authUsername, authPassword } = req.body;
@@ -49,6 +49,11 @@ app.post("/loginAuth", async (req, res) => {
 	res.send(user);
 	res.end;
 });
+
+app.get("/logout", (req, res) => {
+	console.log("log out")
+	res.send()
+})
 
 console.log("Connection Back: OK");
 app.listen(PORT, () => {

@@ -1,17 +1,17 @@
 const { sql } = require("../../../DB/dbConnect");
 
-const GetAllSpiritNames = async (req, res) => {
+const GetSpiritsData = async (req, res) => {
 	try {
 		const spiritsNames = await sql`
-            SELECT name_1
+            SELECT *
             FROM spirits;
         `;
 		console.log(spiritsNames);
 		return spiritsNames;
 	} catch (err) {
-		console.log("Error en GetAllSpiritNames");
+		console.log("Error en GetSpiritsData");
 		console.log(err);
 	}
 };
 
-module.exports = { GetAllSpiritNames };
+module.exports = { GetSpiritsData };
